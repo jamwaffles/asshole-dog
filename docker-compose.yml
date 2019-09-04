@@ -1,0 +1,39 @@
+version: "3.2"
+services:
+  frontend:
+    build: ./frontend
+    environment:
+      - API_URL=http://backend:3001/cmp/api
+    ports:
+      - "3000:3000"
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/asshole-dog
+      - RUST_LOG=backend=trace
+    ports:
+      - "3001:3001"
+    networks:
+      - postgres
+
+  postgres:
+    image: "postgres:9.6-alpine"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: asshole-dog
+    volumes:
+      - "./postgres_initdb:/docker-entrypoint-initdb.d:ro"
+    networks:
+      - postgres
+
+  adminer:
+    image: "adminer:latest"
+    networks:
+      - postgres
+
+networks:
+  postgres:
