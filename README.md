@@ -20,3 +20,5 @@ cd backend
 diesel migration run
 cargo run
 ```
+
+<http://localhost:3001/api>
