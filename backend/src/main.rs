@@ -7,7 +7,7 @@ mod actions;
 mod models;
 mod schema;
 
-use actions::add_timestamp::add_timestamp;
+use actions::{add_timestamp::add_timestamp, get_timestamps::get_timestamps};
 use actix_cors::Cors;
 use actix_web::{http::header, middleware::Logger, web, App, HttpServer};
 use diesel::{
@@ -51,7 +51,9 @@ fn main() -> Result<(), Box<dyn error::Error>> {
                     .max_age(3600),
             )
             .service(
-                web::scope("/api").route("/add-timestamp", web::post().to_async(add_timestamp)),
+                web::scope("/api")
+                    .route("/add-timestamp", web::post().to_async(add_timestamp))
+                    .route("/get-timestamps", web::get().to_async(get_timestamps)),
             )
     })
     .bind(&addr)

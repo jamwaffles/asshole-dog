@@ -1,4 +1,5 @@
 pub mod add_timestamp;
+pub mod get_timestamps;
 
 #[derive(serde_derive::Serialize, Debug, Clone)]
 struct OkResponse {

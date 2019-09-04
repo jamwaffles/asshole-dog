@@ -1,1 +1,3 @@
-pub mod timestamp;
+mod timestamp;
+
+pub use self::timestamp::Timestamp;
