@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate diesel;
 #[macro_use]
-extern crate tracing;
+extern crate log;
 
 mod actions;
 mod models;
@@ -27,6 +27,7 @@ pub fn establish_connection() -> Result<Pool<ConnectionManager<PgConnection>>, B
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     dotenv().ok();
+    pretty_env_logger::init();
 
     info!("Starting...");
 
