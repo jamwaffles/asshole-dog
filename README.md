@@ -13,6 +13,11 @@ cargo web start
 
 ## Backend
 
+* Go to <https://developer.microsoft.com/en-us/graph/graph-explorer#> or something
+* Either:
+	* Copy the `hello` localstorage key, extract `msft.access_token` and add it to `.env` under `MS_AUTH_TOKEN` OR
+	* Make some graph explorer request and copy the `Authorization` header (sans `Bearer ` prefix) into `.env` under `MS_AUTH_TOKEN`
+
 ```bash
 docker-compose up -d postgres
 
