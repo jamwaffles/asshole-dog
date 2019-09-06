@@ -4,6 +4,7 @@ extern crate diesel;
 extern crate log;
 
 mod actions;
+mod excel;
 mod models;
 mod schema;
 
